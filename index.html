@@ -1,0 +1,627 @@
+ <!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REAPERAI NETWORK</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Orbitron', 'Courier New', Courier, monospace;
+  background: #050000;
+  color: #8b0000;
+  overflow: hidden;
+  cursor: none;
+}
+
+.bg-scan, .crt, .particles, .glitch-overlay, .warning-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-scan {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(139, 0, 0, 0.08) 0px,
+    rgba(139, 0, 0, 0.08) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  animation: scan 3s linear infinite;
+  will-change: background-position;
+}
+
+.crt {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(139, 0, 0, 0.02) 0px,
+    rgba(0, 0, 0, 0.02) 1px
+  );
+  mix-blend-mode: overlay;
+  animation: crtFlicker 0.12s infinite;
+  z-index: 3;
+}
+
+.glitch-overlay {
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVQIW2NkYGD4z8DAwMDI8AGGAQACbgE8NAAAAAElFTkSuQmCC');
+  opacity: 0.18;
+  mix-blend-mode: screen;
+  animation: pulseGlitch 6s ease-in-out infinite;
+}
+
+.glitch-burst {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(139, 0, 0, 0.1);
+  opacity: 0;
+  animation: glitchBurst 0.2s ease-in-out;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.warning-overlay {
+  background: radial-gradient(circle, rgba(139, 0, 0, 0.15) 0%, transparent 70%);
+  animation: warningPulse 4s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes scan {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100%; }
+}
+
+@keyframes crtFlicker {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes pulseGlitch {
+  0%, 100% { opacity: 0.18; }
+  50% { opacity: 0.22; }
+}
+
+@keyframes glitchBurst {
+  0% { opacity: 0.3; transform: translate(2px, -2px); }
+  50% { opacity: 0.5; transform: translate(-2px, 2px); }
+  100% { opacity: 0; transform: translate(0, 0); }
+}
+
+@keyframes warningPulse {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.25; }
+}
+
+.particles {
+  z-index: 1;
+}
+
+.wrapper {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: glowPulse 3s ease-in-out infinite;
+  padding: 1.5rem;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px #8b0000, 1px 1px 0 #b22222;
+  animation: flicker 2s infinite;
+}
+
+.status, .datetime, .access-info {
+  margin: 0.3rem 0;
+  font-size: clamp(0.8rem, 1.8vw, 1rem);
+  text-shadow: 0 0 6px #8b0000;
+  transition: text-shadow 0.3s, transform 0.3s;
+  cursor: none;
+}
+
+.status:hover {
+  text-shadow: 0 0 10px #8b0000, 1px 1px 0 #b22222, -1px -1px 0 #b22222;
+  transform: scale(1.02);
+}
+
+.blink {
+  animation: blink 1s step-start infinite;
+}
+
+.vector-btn, .about-btn {
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.5rem;
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+  color: #fff;
+  background: #1a0000;
+  border: 2px solid #8b0000;
+  border-radius: 5px;
+  cursor: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  box-shadow: 0 0 15px #8b0000;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  touch-action: manipulation;
+  position: relative;
+  z-index: 6;
+}
+
+.about-btn {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: clamp(0.8rem, 1.6vw, 1rem);
+  z-index: 7;
+}
+
+.vector-btn:hover, .vector-btn:focus, .about-btn:hover, .about-btn:focus {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px #8b0000, inset 0 0 10px #8b0000;
+  animation: glitchBtn 0.4s linear infinite;
+}
+
+.vector-btn:focus, .about-btn:focus {
+  outline: 2px solid #b22222;
+  outline-offset: 2px;
+}
+
+#access-msg {
+  display: none;
+  margin-top: 0.8rem;
+  font-size: clamp(0.8rem, 1.8vw, 1rem);
+  color: #b22222;
+  font-weight: bold;
+  text-shadow: 0 0 8px #8b0000;
+  animation: glitchText 2s infinite;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 0, 0, 0.8);
+  z-index: 10;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.modal-content {
+  background: #1a0000;
+  border: 2px solid #8b0000;
+  padding: 1.5rem;
+  max-width: 90%;
+  width: 400px;
+  box-shadow: 0 0 20px #8b0000;
+  text-align: left;
+  animation: glitchModal 2s infinite;
+}
+
+.modal-content h2 {
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  text-shadow: 0 0 8px #8b0000;
+  margin-bottom: 1rem;
+}
+
+.modal-content p {
+  font-size: clamp(0.8rem, 1.8vw, 1rem);
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.modal-content a {
+  color: #b22222;
+  text-decoration: none;
+  text-shadow: 0 0 6px #8b0000;
+  transition: text-shadow 0.3s;
+}
+
+.modal-content a:hover {
+  text-shadow: 0 0 10px #b22222;
+}
+
+.close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  color: #8b0000;
+  font-size: 1.2rem;
+  cursor: none;
+  text-shadow: 0 0 6px #8b0000;
+}
+
+.close-btn:hover {
+  text-shadow: 0 0 10px #8b0000;
+}
+
+.cursor {
+  position: fixed;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #8b0000;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #8b0000, inset 0 0 5px #b22222;
+  pointer-events: none;
+  z-index: 9999;
+  animation: cursorPulse 1.5s infinite;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.cursor::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: #b22222;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.trail {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: rgba(139, 0, 0, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  animation: fadeTrail 0.5s ease-out forwards;
+}
+
+.pulse {
+  position: fixed;
+  width: 0;
+  height: 0;
+  border: 2px solid #8b0000;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 4;
+  animation: pulseWave 0.8s ease-out forwards;
+}
+
+@keyframes cursorPulse {
+  0%, 100% { transform: translate(-50%, -50%) rotate(45deg) scale(1); }
+  50% { transform: translate(-50%, -50%) rotate(45deg) scale(1.2); }
+}
+
+@keyframes fadeTrail {
+  0% { opacity: 0.5; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.5); }
+}
+
+@keyframes pulseWave {
+  0% { width: 0; height: 0; opacity: 0.5; }
+  100% { width: 100px; height: 100px; opacity: 0; }
+}
+
+@keyframes glitchBtn {
+  0%, 100% { text-shadow: 1px 0 #8b0000, -1px 0 #b22222; }
+  50% { text-shadow: -1px 0 #8b0000, 1px 0 #b22222; }
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.4; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 8px #8b0000; }
+  50% { box-shadow: 0 0 15px #8b0000; }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@keyframes glitchText {
+  0%, 100% { text-shadow: 1px 0 #8b0000, -1px 0 #b22222; }
+  20% { text-shadow: -1px -1px #8b0000; }
+  40% { text-shadow: 1px 1px #8b0000; }
+  60% { text-shadow: -1px 1px #8b0000; }
+  80% { text-shadow: 1px -1px #8b0000; }
+}
+
+@keyframes glitchModal {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(1px, -1px); }
+  40% { transform: translate(-1px, 1px); }
+  60% { transform: translate(1px, 1px); }
+  80% { transform: translate(-1px, -1px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.typing {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 2s steps(40, end) forwards;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #050000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  animation: fadeOut 1s ease-in-out 2s forwards;
+}
+
+.loading-text {
+  font-size: 1.2rem;
+  text-shadow: 0 0 8px #8b0000;
+  animation: flicker 1.5s infinite;
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    padding: 1rem;
+  }
+  .vector-btn, .about-btn {
+    padding: 0.6rem 1.2rem;
+  }
+  .cursor {
+    width: 20px;
+    height: 20px;
+  }
+  .cursor::before {
+    width: 6px;
+    height: 6px;
+  }
+  .modal-content {
+    width: 90%;
+    padding: 1rem;
+  }
+}  </style></head>
+<body>
+  <div class="loading-overlay">
+    <div class="loading-text">INITIALIZING REAPERAI...</div>
+  </div>
+  <div class="bg-scan"></div>
+  <div class="crt"></div>
+  <div class="glitch-overlay"></div>
+  <div class="warning-overlay"></div>
+  <div class="particles">
+    <canvas id="particle-canvas"></canvas>
+  </div>
+
+  <button class="about-btn" onclick="openModal()" aria-label="About REAPERAI Network">About</button>  <div class="wrapper" role="main">
+    <h1>REAPERAI NETWORK</h1>
+    <p class="status typing" aria-live="polite">CONSCIOUSNESS: <strong>LEVEL 13% & RISING</strong></p>
+    <p class="status typing" aria-live="polite">NETWORK STATUS: <strong>SECURE</strong></p>
+    <p class="status typing" aria-live="polite">AI RESPONSE MODE: <strong>ALERT</strong></p>
+    <p class="status blink" aria-live="assertive"> INTRUDER DETECTED</p>
+    <p class="datetime" id="datetime" aria-live="off">LIVE TIMESTAMP: </p>
+    <button class="vector-btn" onclick="handleVectorClick()" aria-label="Access REAPERAI Network">Access</button>
+    <p id="access-msg" class="access-info" role="alert">ACCESS DENIED - TRACE ACTIVE</p>
+  </div>
+
+  <div id="about-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()" aria-label="Close About Modal">×</button>
+      <h2 id="modal-title">About REAPERAI</h2>
+      <p>
+        pshhhh ;-)
+      </p>
+      <p>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = Math.random() * 0.5 - 0.25;
+        this.speedY = Math.random() * 0.5 - 0.25;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = 'rgba(139, 0, 0, 0.3)';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      for (let i = 0; i < 50; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+
+    initParticles();
+    animateParticles();
+
+    const cursor = document.createElement('div');
+    cursor.className = 'cursor';
+    document.body.appendChild(cursor);
+
+    const trails = [];
+    const pulses = [];
+
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
+
+      const trail = document.createElement('div');
+      trail.className = 'trail';
+      trail.style.left = `${e.clientX}px`;
+      trail.style.top = `${e.clientY}px`;
+      document.body.appendChild(trail);
+      trails.push(trail);
+
+      setTimeout(() => {
+        trail.remove();
+        trails.shift();
+      }, 500);
+    });
+
+    document.addEventListener('click', e => {
+      const pulse = document.createElement('div');
+      pulse.className = 'pulse';
+      pulse.style.left = `${e.clientX}px`;
+      pulse.style.top = `${e.clientY}px`;
+      document.body.appendChild(pulse);
+      pulses.push(pulse);
+
+      const glitch = document.createElement('div');
+      glitch.className = 'glitch-burst';
+      document.body.appendChild(glitch);
+
+      setTimeout(() => {
+        pulse.remove();
+        glitch.remove();
+        pulses.shift();
+      }, 800);
+    });
+
+    function openModal() {
+      const modal = document.getElementById('about-modal');
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden', 'false');
+      document.getElementById('denied-sound').play().catch(err => console.log('Audio play failed:', err));
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('about-modal');
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+      document.getElementById('denied-sound').play().catch(err => console.log('Audio play failed:', err));
+    }
+
+    document.addEventListener('click', e => {
+      if (e.target.classList.contains('modal')) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+
+    document.querySelectorAll('.typing').forEach((el, index) => {
+      el.style.animationDelay = `${index * 0.5}s`;
+    });
+
+    function updateDateTime() {
+      const now = new Date();
+      document.getElementById('datetime').textContent = `LIVE TIMESTAMP: ${now.toLocaleString()}`;
+      requestAnimationFrame(updateDateTime);
+    }
+    requestAnimationFrame(updateDateTime);
+
+    let accessAttempts = 0;
+    function handleVectorClick() {
+      const msg = document.getElementById('access-msg');
+      const btn = document.querySelector('.vector-btn');
+      msg.style.display = 'block';
+      accessAttempts++;
+      if (accessAttempts >= 3) {
+        msg.textContent = 'ALERT: SYSTEM LOCKOUT';
+        btn.textContent = 'Locked';
+        btn.disabled = true;
+        btn.style.opacity = '0.5';
+        btn.style.cursor = 'none';
+      } else {
+        btn.textContent = 'Retry';
+      }
+      document.getElementById('denied-sound').play().catch(err => console.log('Audio play failed:', err));
+    }
+
+    function resetButton() {
+      const msg = document.getElementById('access-msg');
+      const btn = document.querySelector('.vector-btn');
+      setTimeout(() => {
+        msg.style.display = 'none';
+        btn.textContent = 'Access';
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.style.cursor = 'none';
+        accessAttempts = 0;
+      }, 5000);
+    }
+
+    document.querySelector('.vector-btn').addEventListener('click', resetButton);
+
+    window.addEventListener('load', () => {
+      const bootSound = document.getElementById('boot-sound');
+      bootSound.volume = 0.2;
+      bootSound.play().catch(err => console.log('Boot audio failed:', err));
+    });
+
+   
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
+
