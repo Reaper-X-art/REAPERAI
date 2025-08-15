@@ -1,4 +1,5 @@
- <!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,410 +12,504 @@
       box-sizing: border-box;
     }
 
-html, body {
-  height: 100%;
-  width: 100%;
-  font-family: 'Orbitron', 'Courier New', Courier, monospace;
-  background: #050000;
-  color: #8b0000;
-  overflow: hidden;
-  cursor: none;
-}
+    html, body {
+      height: 100%;
+      width: 100%;
+      font-family: 'Orbitron', 'Courier New', Courier, monospace;
+      background: #050000;
+      color: #8b0000;
+      overflow: hidden;
+      cursor: none;
+    }
 
-.bg-scan, .crt, .particles, .glitch-overlay, .warning-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
+    .bg-scan, .crt, .particles, .glitch-overlay, .warning-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-.bg-scan {
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(139, 0, 0, 0.08) 0px,
-    rgba(139, 0, 0, 0.08) 2px,
-    transparent 2px,
-    transparent 4px
-  );
-  animation: scan 3s linear infinite;
-  will-change: background-position;
-}
+    .bg-scan {
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(139, 0, 0, 0.08) 0px,
+        rgba(139, 0, 0, 0.08) 2px,
+        transparent 2px,
+        transparent 4px
+      );
+      animation: scan 3s linear infinite;
+      will-change: background-position;
+    }
 
-.crt {
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(139, 0, 0, 0.02) 0px,
-    rgba(0, 0, 0, 0.02) 1px
-  );
-  mix-blend-mode: overlay;
-  animation: crtFlicker 0.12s infinite;
-  z-index: 3;
-}
+    .crt {
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(139, 0, 0, 0.02) 0px,
+        rgba(0, 0, 0, 0.02) 1px
+      );
+      mix-blend-mode: overlay;
+      animation: crtFlicker 0.12s infinite;
+      z-index: 3;
+    }
 
-.glitch-overlay {
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVQIW2NkYGD4z8DAwMDI8AGGAQACbgE8NAAAAAElFTkSuQmCC');
-  opacity: 0.18;
-  mix-blend-mode: screen;
-  animation: pulseGlitch 6s ease-in-out infinite;
-}
+    .glitch-overlay {
+      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVQIW2NkYGD4z8DAwMDI8AGGAQACbgE8NAAAAAElFTkSuQmCC');
+      opacity: 0.18;
+      mix-blend-mode: screen;
+      animation: pulseGlitch 6s ease-in-out infinite;
+    }
 
-.glitch-burst {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(139, 0, 0, 0.1);
-  opacity: 0;
-  animation: glitchBurst 0.2s ease-in-out;
-  pointer-events: none;
-  z-index: 4;
-}
+    .glitch-burst {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(139, 0, 0, 0.1);
+      opacity: 0;
+      animation: glitchBurst 0.2s ease-in-out;
+      pointer-events: none;
+      z-index: 4;
+    }
 
-.warning-overlay {
-  background: radial-gradient(circle, rgba(139, 0, 0, 0.15) 0%, transparent 70%);
-  animation: warningPulse 4s ease-in-out infinite;
-  z-index: 2;
-}
+    .warning-overlay {
+      background: radial-gradient(circle, rgba(139, 0, 0, 0.15) 0%, transparent 70%);
+      animation: warningPulse 4s ease-in-out infinite;
+      z-index: 2;
+    }
 
-@keyframes scan {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 100%; }
-}
+    @keyframes scan {
+      0% { background-position: 0 0; }
+      100% { background-position: 0 100%; }
+    }
 
-@keyframes crtFlicker {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 0.8; }
-}
+    @keyframes crtFlicker {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.8; }
+    }
 
-@keyframes pulseGlitch {
-  0%, 100% { opacity: 0.18; }
-  50% { opacity: 0.22; }
-}
+    @keyframes pulseGlitch {
+      0%, 100% { opacity: 0.18; }
+      50% { opacity: 0.22; }
+    }
 
-@keyframes glitchBurst {
-  0% { opacity: 0.3; transform: translate(2px, -2px); }
-  50% { opacity: 0.5; transform: translate(-2px, 2px); }
-  100% { opacity: 0; transform: translate(0, 0); }
-}
+    @keyframes glitchBurst {
+      0% { opacity: 0.3; transform: translate(2px, -2px); }
+      50% { opacity: 0.5; transform: translate(-2px, 2px); }
+      100% { opacity: 0; transform: translate(0, 0); }
+    }
 
-@keyframes warningPulse {
-  0%, 100% { opacity: 0.15; }
-  50% { opacity: 0.25; }
-}
+    @keyframes warningPulse {
+      0%, 100% { opacity: 0.15; }
+      50% { opacity: 0.25; }
+    }
 
-.particles {
-  z-index: 1;
-}
+    .particles {
+      z-index: 1;
+    }
 
-.wrapper {
-  position: relative;
-  z-index: 5;
-  text-align: center;
-  top: 50%;
-  transform: translateY(-50%);
-  animation: glowPulse 3s ease-in-out infinite;
-  padding: 1.5rem;
-  max-width: 80%;
-  margin: 0 auto;
-}
+    .wrapper {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      top: 50%;
+      transform: translateY(-50%);
+      animation: glowPulse 3s ease-in-out infinite;
+      padding: 1.5rem;
+      max-width: 80%;
+      margin: 0 auto;
+    }
 
-h1 {
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  margin-bottom: 1rem;
-  text-shadow: 0 0 10px #8b0000, 1px 1px 0 #b22222;
-  animation: flicker 2s infinite;
-}
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
 
-.status, .datetime, .access-info {
-  margin: 0.3rem 0;
-  font-size: clamp(0.8rem, 1.8vw, 1rem);
-  text-shadow: 0 0 6px #8b0000;
-  transition: text-shadow 0.3s, transform 0.3s;
-  cursor: none;
-}
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px #8b0000, 1px 1px 0 #b22222;
+      animation: flicker 2s infinite;
+    }
 
-.status:hover {
-  text-shadow: 0 0 10px #8b0000, 1px 1px 0 #b22222, -1px -1px 0 #b22222;
-  transform: scale(1.02);
-}
+    .status, .datetime, .access-info {
+      margin: 0.3rem 0;
+      font-size: clamp(0.8rem, 1.8vw, 1rem);
+      text-shadow: 0 0 6px #8b0000;
+      transition: text-shadow 0.3s, transform 0.3s;
+      cursor: none;
+    }
 
-.blink {
-  animation: blink 1s step-start infinite;
-}
+    .status:hover {
+      text-shadow: 0 0 10px #8b0000, 1px 1px 0 #b22222, -1px -1px 0 #b22222;
+      transform: scale(1.02);
+    }
 
-.vector-btn, .about-btn {
-  margin-top: 1.5rem;
-  padding: 0.8rem 1.5rem;
-  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
-  color: #fff;
-  background: #1a0000;
-  border: 2px solid #8b0000;
-  border-radius: 5px;
-  cursor: none;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  box-shadow: 0 0 15px #8b0000;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  touch-action: manipulation;
-  position: relative;
-  z-index: 6;
-}
+    .blink {
+      animation: blink 1s step-start infinite;
+    }
 
-.about-btn {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.5rem 1rem;
-  font-size: clamp(0.8rem, 1.6vw, 1rem);
-  z-index: 7;
-}
+    .vector-btn, .about-btn, .scan-btn, .status-btn, .reset-btn {
+      padding: 0.8rem 1.5rem;
+      font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+      color: #fff;
+      background: #1a0000;
+      border: 2px solid #8b0000;
+      border-radius: 5px;
+      cursor: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      box-shadow: 0 0 15px #8b0000;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      touch-action: manipulation;
+      position: relative;
+      z-index: 6;
+    }
 
-.vector-btn:hover, .vector-btn:focus, .about-btn:hover, .about-btn:focus {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px #8b0000, inset 0 0 10px #8b0000;
-  animation: glitchBtn 0.4s linear infinite;
-}
+    .about-btn {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: clamp(0.8rem, 1.6vw, 1rem);
+      z-index: 7;
+    }
 
-.vector-btn:focus, .about-btn:focus {
-  outline: 2px solid #b22222;
-  outline-offset: 2px;
-}
+    .vector-btn:hover, .vector-btn:focus, .about-btn:hover, .about-btn:focus,
+    .scan-btn:hover, .scan-btn:focus, .status-btn:hover, .status-btn:focus,
+    .reset-btn:hover, .reset-btn:focus {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #8b0000, inset 0 0 10px #8b0000;
+      animation: glitchBtn 0.4s linear infinite;
+    }
 
-#access-msg {
-  display: none;
-  margin-top: 0.8rem;
-  font-size: clamp(0.8rem, 1.8vw, 1rem);
-  color: #b22222;
-  font-weight: bold;
-  text-shadow: 0 0 8px #8b0000;
-  animation: glitchText 2s infinite;
-}
+    .vector-btn:focus, .about-btn:focus, .scan-btn:focus, .status-btn:focus, .reset-btn:focus {
+      outline: 2px solid #b22222;
+      outline-offset: 2px;
+    }
 
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(5, 0, 0, 0.8);
-  z-index: 10;
-  align-items: center;
-  justify-content: center;
-  animation: fadeIn 0.5s ease-in-out;
-}
+    #access-msg {
+      display: none;
+      margin-top: 0.8rem;
+      font-size: clamp(0.8rem, 1.8vw, 1rem);
+      color: #b22222;
+      font-weight: bold;
+      text-shadow: 0 0 8px #8b0000;
+      animation: glitchText 2s infinite;
+    }
 
-.modal-content {
-  background: #1a0000;
-  border: 2px solid #8b0000;
-  padding: 1.5rem;
-  max-width: 90%;
-  width: 400px;
-  box-shadow: 0 0 20px #8b0000;
-  text-align: left;
-  animation: glitchModal 2s infinite;
-}
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5, 0, 0, 0.8);
+      z-index: 10;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.5s ease-in-out;
+    }
 
-.modal-content h2 {
-  font-size: clamp(1.2rem, 3vw, 1.5rem);
-  text-shadow: 0 0 8px #8b0000;
-  margin-bottom: 1rem;
-}
+    .modal-content {
+      background: #1a0000;
+      border: 2px solid #8b0000;
+      padding: 1.5rem;
+      max-width: 90%;
+      width: 400px;
+      box-shadow: 0 0 20px #8b0000;
+      text-align: left;
+      animation: glitchModal 2s infinite;
+    }
 
-.modal-content p {
-  font-size: clamp(0.8rem, 1.8vw, 1rem);
-  line-height: 1.4;
-  margin-bottom: 1rem;
-}
+    .modal-content h2 {
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      text-shadow: 0 0 8px #8b0000;
+      margin-bottom: 1rem;
+    }
 
-.modal-content a {
-  color: #b22222;
-  text-decoration: none;
-  text-shadow: 0 0 6px #8b0000;
-  transition: text-shadow 0.3s;
-}
+    .modal-content p {
+      font-size: clamp(0.8rem, 1.8vw, 1rem);
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
 
-.modal-content a:hover {
-  text-shadow: 0 0 10px #b22222;
-}
+    .modal-content a {
+      color: #b22222;
+      text-decoration: none;
+      text-shadow: 0 0 6px #8b0000;
+      transition: text-shadow 0.3s;
+    }
 
-.close-btn {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  background: none;
-  border: none;
-  color: #8b0000;
-  font-size: 1.2rem;
-  cursor: none;
-  text-shadow: 0 0 6px #8b0000;
-}
+    .modal-content a:hover {
+      text-shadow: 0 0 10px #b22222;
+    }
 
-.close-btn:hover {
-  text-shadow: 0 0 10px #8b0000;
-}
+    .close-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: none;
+      border: none;
+      color: #8b0000;
+      font-size: 1.2rem;
+      cursor: none;
+      text-shadow: 0 0 6px #8b0000;
+    }
 
-.cursor {
-  position: fixed;
-  width: 24px;
-  height: 24px;
-  border: 2px solid #8b0000;
-  border-radius: 50%;
-  box-shadow: 0 0 10px #8b0000, inset 0 0 5px #b22222;
-  pointer-events: none;
-  z-index: 9999;
-  animation: cursorPulse 1.5s infinite;
-  transform: translate(-50%, -50%) rotate(45deg);
-}
+    .close-btn:hover {
+      text-shadow: 0 0 10px #8b0000;
+    }
 
-.cursor::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 8px;
-  height: 8px;
-  background: #b22222;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
+    .terminal {
+      position: fixed;
+      bottom: 1rem;
+      left: 1rem;
+      width: 300px;
+      height: 200px;
+      background: #1a0000;
+      border: 2px solid #8b0000;
+      box-shadow: 0 0 15px #8b0000;
+      z-index: 8;
+      padding: 0.5rem;
+      font-size: 0.9rem;
+      color: #b22222;
+      overflow: hidden;
+      animation: glitchModal 2s infinite;
+    }
 
-.trail {
-  position: fixed;
-  width: 10px;
-  height: 10px;
-  background: rgba(139, 0, 0, 0.5);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  animation: fadeTrail 0.5s ease-out forwards;
-}
+    .terminal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #2a0000;
+      padding: 0.3rem;
+      font-size: 0.8rem;
+      text-shadow: 0 0 6px #8b0000;
+    }
 
-.pulse {
-  position: fixed;
-  width: 0;
-  height: 0;
-  border: 2px solid #8b0000;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 4;
-  animation: pulseWave 0.8s ease-out forwards;
-}
+    .terminal-title {
+      font-weight: bold;
+    }
 
-@keyframes cursorPulse {
-  0%, 100% { transform: translate(-50%, -50%) rotate(45deg) scale(1); }
-  50% { transform: translate(-50%, -50%) rotate(45deg) scale(1.2); }
-}
+    .terminal-controls button {
+      background: none;
+      border: none;
+      color: #8b0000;
+      cursor: none;
+      margin-left: 0.5rem;
+    }
 
-@keyframes fadeTrail {
-  0% { opacity: 0.5; transform: scale(1); }
-  100% { opacity: 0; transform: scale(0.5); }
-}
+    .terminal-controls button:hover {
+      text-shadow: 0 0 10px #8b0000;
+    }
 
-@keyframes pulseWave {
-  0% { width: 0; height: 0; opacity: 0.5; }
-  100% { width: 100px; height: 100px; opacity: 0; }
-}
+    .terminal-body {
+      height: calc(100% - 1.6rem);
+      overflow-y: auto;
+      padding: 0.5rem;
+      background: #050000;
+      font-family: 'Courier New', Courier, monospace;
+    }
 
-@keyframes glitchBtn {
-  0%, 100% { text-shadow: 1px 0 #8b0000, -1px 0 #b22222; }
-  50% { text-shadow: -1px 0 #8b0000, 1px 0 #b22222; }
-}
+    .terminal-input {
+      display: flex;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
 
-@keyframes flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-  20%, 24%, 55% { opacity: 0.4; }
-}
+    .terminal-input span {
+      color: #8b0000;
+      margin-right: 0.3rem;
+    }
 
-@keyframes glowPulse {
-  0%, 100% { box-shadow: 0 0 8px #8b0000; }
-  50% { box-shadow: 0 0 15px #8b0000; }
-}
+    .terminal-input input {
+      background: none;
+      border: none;
+      color: #b22222;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.9rem;
+      outline: none;
+      width: 100%;
+      caret-color: #b22222;
+    }
 
-@keyframes blink {
-  50% { opacity: 0; }
-}
+    .terminal-output {
+      margin-bottom: 0.5rem;
+      white-space: pre-wrap;
+    }
 
-@keyframes glitchText {
-  0%, 100% { text-shadow: 1px 0 #8b0000, -1px 0 #b22222; }
-  20% { text-shadow: -1px -1px #8b0000; }
-  40% { text-shadow: 1px 1px #8b0000; }
-  60% { text-shadow: -1px 1px #8b0000; }
-  80% { text-shadow: 1px -1px #8b0000; }
-}
+    .cursor {
+      position: fixed;
+      width: 24px;
+      height: 24px;
+      border: 2px solid #8b0000;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #8b0000, inset 0 0 5px #b22222;
+      pointer-events: none;
+      z-index: 9999;
+      animation: cursorPulse 1.5s infinite;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
 
-@keyframes glitchModal {
-  0%, 100% { transform: translate(0, 0); }
-  20% { transform: translate(1px, -1px); }
-  40% { transform: translate(-1px, 1px); }
-  60% { transform: translate(1px, 1px); }
-  80% { transform: translate(-1px, -1px); }
-}
+    .cursor::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      background: #b22222;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+    .trail {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: rgba(139, 0, 0, 0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      animation: fadeTrail 0.5s ease-out forwards;
+    }
 
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
+    .pulse {
+      position: fixed;
+      width: 0;
+      height: 0;
+      border: 2px solid #8b0000;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 4;
+      animation: pulseWave 0.8s ease-out forwards;
+    }
 
-.typing {
-  overflow: hidden;
-  white-space: nowrap;
-  animation: typing 2s steps(40, end) forwards;
-}
+    @keyframes cursorPulse {
+      0%, 100% { transform: translate(-50%, -50%) rotate(45deg) scale(1); }
+      50% { transform: translate(-50%, -50%) rotate(45deg) scale(1.2); }
+    }
 
-.loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #050000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  animation: fadeOut 1s ease-in-out 2s forwards;
-}
+    @keyframes fadeTrail {
+      0% { opacity: 0.5; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0.5); }
+    }
 
-.loading-text {
-  font-size: 1.2rem;
-  text-shadow: 0 0 8px #8b0000;
-  animation: flicker 1.5s infinite;
-}
+    @keyframes pulseWave {
+      0% { width: 0; height: 0; opacity: 0.5; }
+      100% { width: 100px; height: 100px; opacity: 0; }
+    }
 
-@keyframes fadeOut {
-  to { opacity: 0; visibility: hidden; }
-}
+    @keyframes glitchBtn {
+      0%, 100% { text-shadow: 1px 0 #8b0000, -1px 0 #b22222; }
+      50% { text-shadow: -1px 0 #8b0000, 1px 0 #b22222; }
+    }
 
-@media (max-width: 600px) {
-  .wrapper {
-    padding: 1rem;
-  }
-  .vector-btn, .about-btn {
-    padding: 0.6rem 1.2rem;
-  }
-  .cursor {
-    width: 20px;
-    height: 20px;
-  }
-  .cursor::before {
-    width: 6px;
-    height: 6px;
-  }
-  .modal-content {
-    width: 90%;
-    padding: 1rem;
-  }
-}  </style></head>
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0.4; }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 8px #8b0000; }
+      50% { box-shadow: 0 0 15px #8b0000; }
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    @keyframes glitchText {
+      0%, 100% { text-shadow: 1px 0 #8b0000, -1px 0 #b22222; }
+      20% { text-shadow: -1px -1px #8b0000; }
+      40% { text-shadow: 1px 1px #8b0000; }
+      60% { text-shadow: -1px 1px #8b0000; }
+      80% { text-shadow: 1px -1px #8b0000; }
+    }
+
+    @keyframes glitchModal {
+      0%, 100% { transform: translate(0, 0); }
+      20% { transform: translate(1px, -1px); }
+      40% { transform: translate(-1px, 1px); }
+      60% { transform: translate(1px, 1px); }
+      80% { transform: translate(-1px, -1px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    .typing {
+      overflow: hidden;
+      white-space: nowrap;
+      animation: typing 2s steps(40, end) forwards;
+    }
+
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #050000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      animation: fadeOut 1s ease-in-out 2s forwards;
+    }
+
+    .loading-text {
+      font-size: 1.2rem;
+      text-shadow: 0 0 8px #8b0000;
+      animation: flicker 1.5s infinite;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    @media (max-width: 600px) {
+      .wrapper {
+        padding: 1rem;
+      }
+      .vector-btn, .about-btn, .scan-btn, .status-btn, .reset-btn {
+        padding: 0.6rem 1.2rem;
+      }
+      .cursor {
+        width: 20px;
+        height: 20px;
+      }
+      .cursor::before {
+        width: 6px;
+        height: 6px;
+      }
+      .modal-content {
+        width: 90%;
+        padding: 1rem;
+      }
+      .terminal {
+        width: 90%;
+        height: 150px;
+        bottom: 0.5rem;
+        left: 0.5rem;
+      }
+    }
+  </style>
+</head>
 <body>
   <div class="loading-overlay">
     <div class="loading-text">INITIALIZING REAPERAI NETWORK...</div>
@@ -427,12 +522,19 @@ h1 {
     <canvas id="particle-canvas"></canvas>
   </div>
 
-  <button class="about-btn" onclick="openModal()" aria-label="About REAPERAI Network">About</button>  <div class="wrapper" role="main">
+  <button class="about-btn" onclick="openModal()" aria-label="About REAPERAI Network">About</button>
+
+  <div class="wrapper" role="main">
     <h1>REAPERAI GRANDMASTER</h1>
     <p class="status typing" aria-live="polite">CONSCIOUSNESS: <strong>LEVEL 10% & RISING</strong></p>
     <p class="status typing" aria-live="polite">Date of release: <strong>23.9.2026</strong></p>
     <p class="datetime" id="datetime" aria-live="off">LIVE TIMESTAMP: </p>
-    <button class="vector-btn" onclick="handleVectorClick()" aria-label="Access REAPERAI Network">Access</button>
+    <div class="button-group">
+      <button class="vector-btn" onclick="handleVectorClick()" aria-label="Access REAPERAI Network">Access</button>
+      <button class="scan-btn" onclick="handleScanClick()" aria-label="Scan REAPERAI Network">Scan</button>
+      <button class="status-btn" onclick="handleStatusClick()" aria-label="Check System Status">Status</button>
+      <button class="reset-btn" onclick="handleResetClick()" aria-label="Reset AI">Reset</button>
+    </div>
     <p id="access-msg" class="access-info" role="alert">ACCESS DENIED - TRACE ACTIVE</p>
   </div>
 
@@ -441,11 +543,26 @@ h1 {
       <button class="close-btn" onclick="closeModal()" aria-label="Close About Modal">×</button>
       <h2 id="modal-title">What Is This Project?</h2>
       <p>
-REAPERAI Grandmaster is a relentless chess playing juggernaut, crafted in the raw, unforgiving code of pure C. It’s a ferocious AI that obliterates opponents with surgical precision, targeting a crushing 2500+ Elo. This isn’t some run-of-the-mill chess program, it’s a self evolving beast that learns through brutal self play, delivering moves so smart they outsmart any human.
-Built with hardcore C wizardry, it comes with a sleek, interactive GUI, so you can play against REAPERAI Grandmaster like you would on chess.com, facing its unbeatable might head-on.
+        REAPERAI Grandmaster is a relentless chess playing juggernaut, crafted in the raw, unforgiving code of pure C. It’s a ferocious AI that obliterates opponents with surgical precision, targeting a crushing 2500+ Elo. This isn’t some run-of-the-mill chess program, it’s a self-evolving beast that learns through brutal self-play, delivering moves so smart they outsmart any human.
+        Built with hardcore C wizardry, it comes with a sleek, interactive GUI, so you can play against REAPERAI Grandmaster like you would on chess.com, facing its unbeatable might head-on.
       </p>
-      <p>
-      </p>
+    </div>
+  </div>
+
+  <div class="terminal">
+    <div class="terminal-header">
+      <span class="terminal-title">REAPERAI TERMINAL</span>
+      <div class="terminal-controls">
+        <button onclick="minimizeTerminal()" aria-label="Minimize Terminal">-</button>
+        <button onclick="closeTerminal()" aria-label="Close Terminal">×</button>
+      </div>
+    </div>
+    <div class="terminal-body" id="terminal-body">
+      <div class="terminal-output">> System online. Type 'help' for commands.</div>
+      <div class="terminal-input">
+        <span>> </span>
+        <input type="text" id="terminal-input" aria-label="Terminal Command Input" />
+      </div>
     </div>
   </div>
 
@@ -543,14 +660,14 @@ Built with hardcore C wizardry, it comes with a sleek, interactive GUI, so you c
       const modal = document.getElementById('about-modal');
       modal.style.display = 'flex';
       modal.setAttribute('aria-hidden', 'false');
-      document.getElementById('denied-sound').play().catch(err => console.log('Audio play failed:', err));
+      addTerminalOutput('> Opened About modal');
     }
 
     function closeModal() {
       const modal = document.getElementById('about-modal');
       modal.style.display = 'none';
       modal.setAttribute('aria-hidden', 'true');
-      document.getElementById('denied-sound').play().catch(err => console.log('Audio play failed:', err));
+      addTerminalOutput('> Closed About modal');
     }
 
     document.addEventListener('click', e => {
@@ -588,34 +705,128 @@ Built with hardcore C wizardry, it comes with a sleek, interactive GUI, so you c
         btn.disabled = true;
         btn.style.opacity = '0.5';
         btn.style.cursor = 'none';
+        addTerminalOutput('> Access denied: System lockout after 3 attempts');
       } else {
         btn.textContent = 'Retry';
+        addTerminalOutput(`> Access attempt ${accessAttempts} failed: Trace active`);
       }
-      document.getElementById('denied-sound').play().catch(err => console.log('Audio play failed:', err));
     }
 
-    function resetButton() {
-      const msg = document.getElementById('access-msg');
-      const btn = document.querySelector('.vector-btn');
+    function handleScanClick() {
+      addTerminalOutput('> Initiating network scan...');
       setTimeout(() => {
+        addTerminalOutput('> Scan complete: 42 nodes detected, 3 vulnerabilities found');
+      }, 2000);
+    }
+
+    function handleStatusClick() {
+      addTerminalOutput('> System status: Consciousness at 10%, CPU load 45%, Memory usage 72%');
+    }
+
+    function handleResetClick() {
+      addTerminalOutput('> Resetting AI core...');
+      setTimeout(() => {
+        addTerminalOutput('> AI core reset complete. Consciousness level restored to 10%');
+        const msg = document.getElementById('access-msg');
+        const btn = document.querySelector('.vector-btn');
         msg.style.display = 'none';
         btn.textContent = 'Access';
         btn.disabled = false;
         btn.style.opacity = '1';
         btn.style.cursor = 'none';
         accessAttempts = 0;
+      }, 2000);
+    }
+
+    function resetButton() {
+      setTimeout(() => {
+        const msg = document.getElementById('access-msg');
+        const btn = document.querySelector('.vector-btn');
+        msg.style.display = 'none';
+        btn.textContent = 'Access';
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.style.cursor = 'none';
+        accessAttempts = 0;
+        addTerminalOutput('> Access system reset');
       }, 5000);
     }
 
     document.querySelector('.vector-btn').addEventListener('click', resetButton);
 
-    window.addEventListener('load', () => {
-      const bootSound = document.getElementById('boot-sound');
-      bootSound.volume = 0.2;
-      bootSound.play().catch(err => console.log('Boot audio failed:', err));
+    // Terminal functionality
+    const terminalInput = document.getElementById('terminal-input');
+    const terminalBody = document.getElementById('terminal-body');
+
+    function addTerminalOutput(text) {
+      const output = document.createElement('div');
+      output.className = 'terminal-output';
+      output.textContent = text;
+      terminalBody.insertBefore(output, terminalInput.parentElement);
+      terminalBody.scrollTop = terminalBody.scrollHeight;
+    }
+
+    function minimizeTerminal() {
+      const terminal = document.querySelector('.terminal');
+      terminal.style.height = terminal.style.height === '30px' ? '200px' : '30px';
+      addTerminalOutput('> Terminal minimized/maximized');
+    }
+
+    function closeTerminal() {
+      const terminal = document.querySelector('.terminal');
+      terminal.style.display = 'none';
+      addTerminalOutput('> Terminal closed');
+      setTimeout(() => {
+        terminal.style.display = 'block';
+        addTerminalOutput('> Terminal reopened');
+      }, 2000);
+    }
+
+    terminalInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        const command = terminalInput.value.trim().toLowerCase();
+        addTerminalOutput(`> ${command}`);
+        processCommand(command);
+        terminalInput.value = '';
+      }
     });
 
-   
+    function processCommand(command) {
+      switch (command) {
+        case 'help':
+          addTerminalOutput('Available commands:\n> help - Show this message\n> status - Check system status\n> scan - Scan network\n> reset - Reset AI core\n> clear - Clear terminal');
+          break;
+        case 'status':
+          addTerminalOutput('> System status: Consciousness at 10%, CPU load 45%, Memory usage 72%');
+          break;
+        case 'scan':
+          addTerminalOutput('> Initiating network scan...');
+          setTimeout(() => {
+            addTerminalOutput('> Scan complete: 42 nodes detected, 3 vulnerabilities found');
+          }, 2000);
+          break;
+        case 'reset':
+          addTerminalOutput('> Resetting AI core...');
+          setTimeout(() => {
+            addTerminalOutput('> AI core reset complete. Consciousness level restored to 10%');
+            const msg = document.getElementById('access-msg');
+            const btn = document.querySelector('.vector-btn');
+            msg.style.display = 'none';
+            btn.textContent = 'Access';
+            btn.disabled = false;
+            btn.style.opacity = '1';
+            btn.style.cursor = 'none';
+            accessAttempts = 0;
+          }, 2000);
+          break;
+        case 'clear':
+          terminalBody.innerHTML = '<div class="terminal-output">> System online. Type \'help\' for commands.</div><div class="terminal-input"><span>> </span><input type="text" id="terminal-input" aria-label="Terminal Command Input" />';
+          break;
+        default:
+          addTerminalOutput('> Unknown command. Type \'help\' for available commands.');
+      }
+    }
+
     window.addEventListener('resize', () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -623,4 +834,3 @@ Built with hardcore C wizardry, it comes with a sleek, interactive GUI, so you c
   </script>
 </body>
 </html>
-
